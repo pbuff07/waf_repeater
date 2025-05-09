@@ -140,7 +140,7 @@ class WAFTester:
         console = Console()
         table = Table(show_header=True, header_style="bold magenta")
         
-        table.add_column("WAF", style="dim")
+        table.add_column("WAF", style="")
         table.add_column("Site")
         table.add_column("Status", justify="center")
         table.add_column("Blocked", justify="center")
