@@ -45,6 +45,16 @@ WAF_CONFIGS = {
         "block_signatures": ["https://g.alicdn.com/sd/punish/waf_block.html"],
         "test_payload": "/backup.mdb",
     },
+    "华为云WAF": {  # 华为云WAF
+        "sites": [
+            "https://www.hiascend.com/",
+        ],
+        "block_signatures": ["YOUR REQUEST HAS BEEN DENIED!"],
+        "test_payload": "/?file=/etc/passwd",
+        "match_info": {
+            "id": "event_id: ([a-z0-9]*) -->"
+        }
+    },
     "玄武盾": {  # 玄武盾
         "sites": [
             "https://www.dbappsecurity.com.cn/",
