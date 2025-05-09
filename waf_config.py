@@ -31,6 +31,13 @@ WAF_CONFIGS = {
             "id": "eventID: ([a-z0-9-.]*)<\/p>"
         }
     },
+    "雷池WAF": {  # 雷池WAF
+        "sites": [
+            "https://stack.chaitin.com/",
+        ],
+        "block_signatures": ["安全检测能力由"],
+        "test_payload": "/?filename=/etc/passwd",
+    },
     "阿里云": {  # 阿里云
         "sites": [
             "https://www.aliyun.com/",

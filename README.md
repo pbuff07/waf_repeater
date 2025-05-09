@@ -1,6 +1,6 @@
 # WAF Payload 拦截测试器
 
-这是一个用于测试不同 WAF (Web Application Firewall) 对 payload 拦截情况的工具。支持创宇盾、腾讯云、阿里云、玄武盾、宝塔云WAF、D盾、安全狗等多种 WAF。
+这是一个用于测试不同 WAF (Web Application Firewall) 对 payload 拦截情况的工具。支持创宇盾、腾讯云、阿里云、玄武盾、宝塔云WAF、D盾、安全狗、奇安信网站卫士、长亭雷池WAF等多种 WAF。
 
 ## 功能特点
 
