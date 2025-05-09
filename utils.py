@@ -23,7 +23,7 @@ def display_results(results):
     """在终端以表格形式展示测试结果"""
     table = Table(show_header=True, header_style="bold magenta")
     
-    table.add_column("WAF", style="dim")
+    table.add_column("WAF", style="center")
     table.add_column("Site")
     table.add_column("Status", justify="center")
     table.add_column("Blocked", justify="center")

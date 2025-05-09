@@ -28,7 +28,7 @@ WAF_CONFIGS = {
         "block_signatures": ["抱歉！您的访问可能对网站造成威胁，已被云防护拦截！"],
         "test_payload": "/backup.mdb",
         "match_info": {
-            "id": "eventID: ([a-z0-9-.]*)<\/p>"
+            "id": "eventID: ([a-z0-9-.]*)</p>"
         }
     },
     "雷池WAF": {  # 雷池WAF
