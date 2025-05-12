@@ -69,7 +69,7 @@ WAF_CONFIGS = {
         "block_signatures": ['onclick="onUpload()">拦截上报</a>'],
         "test_payload": "/backup.mdb",
         "match_info": {
-            "id": 'id="mm_id">(.*?)<\/span>'
+            "id": '触发WAF防护：(.*?)<\/span>'
         }
     },
     "D盾": {  # D盾
