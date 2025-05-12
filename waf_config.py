@@ -62,6 +62,16 @@ WAF_CONFIGS = {
         "block_signatures": ["https://error.websaas.cn/img/403s.png"],
         "test_payload": "/backup.mdb",
     },
+    "启明星辰云WAF": {  # 启明星辰云WAF
+        "sites": [
+            "https://www.venustech.com.cn/",
+        ],
+        "block_signatures": ['onclick="onUpload()">拦截上报</a>'],
+        "test_payload": "/backup.mdb",
+        "match_info": {
+            "id": 'id="mm_id">(.*?)<\/span>'
+        }
+    },
     "D盾": {  # D盾
         "sites": [
             "https://www.d99net.net/",
