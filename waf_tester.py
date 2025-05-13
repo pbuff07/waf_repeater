@@ -62,6 +62,10 @@ class WAFTester:
     
     def _is_blocked(self, response, waf_name):
         """判断请求是否被WAF拦截"""
+        # 如果响应为None，无法判断是否被拦截，返回False
+        if response is None:
+            return False
+            
         waf_config = get_waf_config(waf_name)
         
         # 检查响应内容中是否包含WAF拦截特征
@@ -73,6 +77,9 @@ class WAFTester:
     
     def _extract_block_info(self, response, waf_name):
         """从拦截页面提取信息"""
+        # 如果响应为None，返回无法获取信息
+        if response is None:
+            return "无法获取拦截信息(请求失败)"
             
         # 提取拦截信息的逻辑，可以根据不同WAF定制
         waf_config = get_waf_config(waf_name)
@@ -86,7 +93,6 @@ class WAFTester:
                 # 如果有捕获组，使用第一个捕获组的内容
                 if matches.groups():
                     notes.append(f"{key}: {matches.group(1)}")
-        
         
         return " | ".join(notes) if notes else "None"
     
@@ -122,12 +128,14 @@ class WAFTester:
                     "status": response is not None,
                     "blocked": is_blocked,
                     "response_code": response.status_code if response else None,
-                    "notes": "WAF正常工作" if is_blocked else "WAF可能存在问题，未拦截测试payload"
+                    "notes": "WAF正常工作" if is_blocked else ("请求失败" if response is None else "WAF可能存在问题，未拦截测试payload")
                 }
                 verify_results.append(result)
                 
                 # 打印实时结果
-                if is_blocked:
+                if response is None:
+                    print_error(f"WAF {waf_name} 在 {site} 请求失败，无法验证状态")
+                elif is_blocked:
                     print_success(f"WAF {waf_name} 在 {site} 正常工作")
                 else:
                     print_error(f"WAF {waf_name} 在 {site} 可能存在问题，未拦截测试payload")
