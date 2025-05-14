@@ -95,6 +95,15 @@ WAF_CONFIGS = {
     },
 }
 
+CVE_TOOLS_CONFIG = {
+    "nuclei": {
+        "path_macos": "tools/nuclei_macos",
+        "path_windows": "tools/nuclei_windows",
+        "path_linux": "tools/nuclei_linux",
+        "templates_path": "tools/nuclei-templates",
+    }
+}
+
 def get_available_wafs():
     """获取所有可用的WAF名称列表"""
     return list(WAF_CONFIGS.keys())
@@ -102,3 +111,7 @@ def get_available_wafs():
 def get_waf_config(waf_name):
     """获取指定WAF的配置信息"""
     return WAF_CONFIGS.get(waf_name)
+
+def get_cve_tool_config(tool_name="nuclei"):
+    """获取CVE测试工具的配置"""
+    return CVE_TOOLS_CONFIG.get(tool_name)

@@ -13,7 +13,7 @@
 
 ## TODO功能
 
-- 新增--cve-payload选项，支持直接指定CVE编号自动验证POC/EXP是否拦截
+- 新增--cve-payload选项，支持直接指定CVE编号自动验证POC/EXP是否拦截（已完成）
 - 新增--link-payload选项，支持指定漏洞分析/漏洞情报/漏洞详情网页地址自动验证POC/EXP是否拦截
 - 新增--ai-payload选项，支持自然语言描述漏洞信息自动验证POC/EXP是否拦截
 
@@ -74,3 +74,36 @@ target=l1_%3C@base64%3E/var/www/html/elfinder/files/%3C@/base64%3E&downLoad=1
 ```
 
 ![image-20250509150420604](./images/file.png)
+
+### 根据CVE编号自动验证
+
+> python3 main.py --cve-payload CVE-2025-0868
+
+配置：需要在程序目录下新建tools文件夹并在config/waf_config.py中更新如下配置项目。
+
+注意：下面包含三个类型macos/windows/linux，配置对应自己系统的参数即可。根据下载地址下载对应的引擎和模板压缩包后解压到tools目录下并更新引擎名称和模板文件夹名称到下面CVE_TOOLS_CONFIG中即可。
+
+```
+CVE_TOOLS_CONFIG = {
+    "nuclei": {
+        "path_macos": "tools/[your-nuclei-name]",
+        "path_windows": "tools/[your-nuclei-name]",
+        "path_linux": "tools/[your-nuclei-name]",
+        "templates_path": "tools/[your-nuclei-templates-name]",
+    }
+}
+
+nuclei引擎下载地址：https://github.com/projectdiscovery/nuclei/releases
+nuclei-templates模板下载地址：https://github.com/projectdiscovery/nuclei-templates/releases
+```
+
+下图为示例配置：
+
+![](./images/exam1.png)
+
+![image-20250514234431785](./images/exam2.png)
+
+运行示例截图：
+
+![image-20250514234833116](/Users/pbuff/PycharmProjects/waf_repeater/images/exam3.png)
+

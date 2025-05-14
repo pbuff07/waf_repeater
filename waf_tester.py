@@ -6,8 +6,8 @@ import urllib.parse
 import re
 from rich.table import Table
 from rich.console import Console
-from utils import print_error, print_info, print_success
-from waf_config import get_waf_config, get_available_wafs
+from utils.utils import print_error, print_info, print_success
+from config.waf_config import get_waf_config, get_available_wafs
 
 class WAFTester:
     def __init__(self, wafs=None, timeout=10, verify_ssl=False, user_agent=None):
@@ -242,7 +242,11 @@ class WAFTester:
         
         # 解析请求行
         request_line = lines[0].strip()
-        method, path, _ = request_line.split(' ', 2)
+        try:
+            method, path, _ = request_line.split(' ', 2)
+        except ValueError:
+            print_error(f"无效的请求行格式: {request_line}")
+            return []
         
         # 解析头部和正文
         headers = {}
@@ -311,3 +315,23 @@ class WAFTester:
                 time.sleep(random.uniform(0.5, 1.5))
         
         return self.results
+    
+    # 在WAFTester类中添加以下方法
+    
+    def test_cve_payload(self, cve_id):
+        """测试CVE相关的payload"""
+        from utils.cve_payload import generate_cve_payload
+        from utils.utils import display_results, print_error, print_info
+        
+        # 生成CVE payload
+        http_request = generate_cve_payload(cve_id)
+        if not http_request:
+            print_error(f"无法为CVE-{cve_id}生成有效的测试payload")
+            return
+        
+        # 使用生成的HTTP请求测试WAF
+        print_info(f"使用CVE-{cve_id}的payload测试WAF")
+        self.test_request_from_file(http_request)
+        
+        # 显示测试结果
+        display_results(self.get_results())
