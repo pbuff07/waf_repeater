@@ -105,5 +105,5 @@ nuclei-templates模板下载地址：https://github.com/projectdiscovery/nuclei-
 
 运行示例截图：
 
-![image-20250514234833116](/Users/pbuff/PycharmProjects/waf_repeater/images/exam3.png)
+![image-20250514234833116](./images/exam3.png)
 
